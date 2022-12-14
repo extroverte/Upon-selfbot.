@@ -1,5 +1,18 @@
 import discord, os, aiohttp, random, json , asyncio, re;import humanize;import datetime as dt;from discord.ext import commands, tasks;from discord.ext.commands import Cog as cog;from discord.ext.commands import command as upon
 
+
+
+
+
+
+with open('utils/config.json') as f:
+  config = json.load(f)
+
+password = config.get('password')
+
+
+
+
 class Avatar_cycle(cog):
     def __init__(self, bot):
         self.bot = bot
@@ -15,13 +28,13 @@ class Avatar_cycle(cog):
     def cog_unload(self):
         self.pfp_rotator.cancel()
 
-
+	
+	
   
     @upon(aliases=['copy'])
     async def steal(self, ctx, u: str = None):
         def get_password():
-            password = os.getenv("password")
-
+         
             return password
 
         if not u:
@@ -57,9 +70,8 @@ class Avatar_cycle(cog):
     @upon(aliases=['skipto', 'jumpto'])
     async def jump(self, ctx, index: int):
         def get_password():
-            password = os.getenv("password")
             return password
-        with open('config/profiles', 'r') as f:
+        with open('config/profiles.json', 'r') as f:
             pfp = json.load(f)
         try:
             avatar = pfp['links'][index - 1]
@@ -131,7 +143,7 @@ class Avatar_cycle(cog):
             self.bot.variables_first_run = False
 
         def get_password():
-            password = os.getenv("password")
+            
 
             return password
 
