@@ -1,0 +1,4 @@
+CYCLE_DELAY=1
+STATUS_CYCLE=Upon On Top,Add more statuses with a comma
+BIO_DELAY=5
+BIO_CYCLE=Upon On Top,Add more statuses with a comma
