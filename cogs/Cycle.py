@@ -10,6 +10,12 @@ except Exception as error:
   print(f"Error extracting file. Error : {error}")
 
 
+with open('utils/config.json') as f:
+  config = json.load(f)
+
+token = config.get('token')
+
+
 
 
 delaybetweencycle = setup[0].replace('"',"").replace("CYCLE_DELAY=","")
@@ -56,7 +62,7 @@ class Cycle(cog):
     global delaybetweenbio
     await ctx.channel.send(content=f"cycling these:\n`{biodata}`\ndelay:\n`{delaybetweenbio}`")
     pass 
-    headers = {'Authorization': os.environ['token'], 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'Accept': '*/*',}
+    headers = {'Authorization': token, 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'Accept': '*/*',}
     while True:
         for biostatus in biodata:
           requests.patch("https://discord.com/api/v8/users/@me/settings",headers=headers,json={"custom_status":{"text":biostatus}})
