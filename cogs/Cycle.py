@@ -1,4 +1,4 @@
-import discord, time, os, asyncio, requests;from discord.ext.commands import command as upon; from discord.ext.commands import Cog as cog
+import discord, time, os, asyncio, requests, json;from discord.ext.commands import command as upon; from discord.ext.commands import Cog as cog
 
 
 
