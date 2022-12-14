@@ -6,16 +6,13 @@ except:
 
 #after installing everything delete it and leave the rest below.
 
-
-
-
 import discord, sys, os, time,json, threading;from pystyle import Colors,Colorate,Write;from discord.ext import commands;from halo import Halo; from utils.alive import alive
 
 with open('utils/config.json') as f:
     config = json.load(f)
 prefix = config.get('prefix')
 loading = config.get('loading_screen')
-
+token = config.get('token')
 
 
 bot = commands.Bot(command_prefix=prefix,self_bot=True,help_command=None)
@@ -24,29 +21,15 @@ bot = commands.Bot(command_prefix=prefix,self_bot=True,help_command=None)
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
     bot.load_extension(f'cogs.{filename[:-3]}')
-
-
-
 def clean():
   if sys.platform.startswith("win"):
     os.system('cls')
   elif sys.platform == 'linux' or 'darwin':
     os.system('clear')
-
-
-
+    
 bot.variables_first_run = True
 bot.variables_last_link = ""
 bot.variables_index = 0
-
-
-
-
-commandsdone = 0
-messagessent = 0
-
-
-
 
 def selfbot():
   print(
@@ -129,7 +112,7 @@ async def on_connect():
 
 try:
   alive()
-  bot.run(os.environ['token'], bot=False)
+  bot.run(token, bot=False)
 except discord.errors.LoginFailure:
   print("Inproper token has been passed")
 
